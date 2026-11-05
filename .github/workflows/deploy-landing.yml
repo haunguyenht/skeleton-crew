@@ -1,9 +1,15 @@
 name: Deploy site
 
-# Manual on purpose: GitHub Pages must be set to "GitHub Actions" as its source
-# (Settings -> Pages -> Build and deployment) before this can publish anything.
-# See the Deployment section of the README.
+# Publishes both apps to GitHub Pages: the landing page at the root and the
+# console under /assistant/. Pages must have "GitHub Actions" as its source
+# (Settings -> Pages -> Build and deployment); see the README.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/**"
+      - "packages/**"
+      - ".github/workflows/deploy-landing.yml"
   workflow_dispatch:
 
 permissions:

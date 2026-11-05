@@ -187,8 +187,8 @@ build works from a sub-path (`base: "./"`), so GitHub Pages or any bucket will s
 
 The [deploy workflow](.github/workflows/deploy-landing.yml) publishes both apps as one Pages site:
 the landing page at the root and the console under `/assistant/`, wired to each other through the
-build-time variables below. It runs on `workflow_dispatch`; set Settings → Pages → Build and
-deployment to "GitHub Actions" first.
+build-time variables below. It runs on every push to `main` that touches an app or the core (and
+on demand); Pages must be set to "GitHub Actions" under Settings → Pages → Build and deployment.
 
 ```bash
 VITE_ASSISTANT_URL=https://desk.example.com pnpm build
