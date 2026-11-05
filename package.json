@@ -1,0 +1,27 @@
+{
+  "name": "skeleton-crew",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A lean, modular underwriting core powering two apps: a marketing landing page and an underwriting assistant.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "dev:landing": "pnpm --filter @skeleton-crew/landing dev",
+    "dev:assistant": "pnpm --filter @skeleton-crew/assistant dev",
+    "build": "pnpm --filter @skeleton-crew/core build && pnpm --filter @skeleton-crew/landing build && pnpm --filter @skeleton-crew/assistant build",
+    "test": "pnpm --filter @skeleton-crew/core test",
+    "typecheck": "pnpm -r typecheck",
+    "preview:landing": "pnpm --filter @skeleton-crew/landing preview",
+    "preview:assistant": "pnpm --filter @skeleton-crew/assistant preview"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

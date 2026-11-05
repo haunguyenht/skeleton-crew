@@ -1,0 +1,21 @@
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+.vite/
+.tsbuildinfo
+*.tsbuildinfo
+
+# Editor
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Note: .kiro/ is intentionally NOT ignored. It holds the product steering
+# docs and specs that describe how this repo is built and must stay public.
