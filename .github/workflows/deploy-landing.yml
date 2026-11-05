@@ -1,4 +1,4 @@
-name: Deploy landing page
+name: Deploy site
 
 # Manual on purpose: GitHub Pages must be set to "GitHub Actions" as its source
 # (Settings -> Pages -> Build and deployment) before this can publish anything.
@@ -29,7 +29,21 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @skeleton-crew/landing build
+
+      - name: Build landing page
+        run: pnpm --filter @skeleton-crew/landing build
+        env:
+          VITE_ASSISTANT_URL: ./assistant/
+
+      - name: Build assistant console
+        run: pnpm --filter @skeleton-crew/assistant build
+        env:
+          VITE_LANDING_URL: ../
+
+      - name: Publish both apps as one static site
+        run: |
+          mkdir -p apps/landing/dist/assistant
+          cp -r apps/assistant/dist/. apps/landing/dist/assistant/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

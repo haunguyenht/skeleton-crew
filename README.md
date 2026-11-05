@@ -2,6 +2,8 @@
 
 # Skeleton Crew
 
+[**Live demo**](https://haunguyenht.github.io/skeleton-crew/) · [Landing page](https://haunguyenht.github.io/skeleton-crew/) · [Underwriting assistant](https://haunguyenht.github.io/skeleton-crew/assistant/)
+
 **A lean, modular underwriting core — one engine powering a marketing site and an underwriting assistant.**
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-5eead4?style=flat-square)](LICENSE)
@@ -181,8 +183,12 @@ gitignored: the reasoning behind the code travels with the code.
 ## Deployment
 
 Both apps are static. `pnpm build` emits `apps/landing/dist` and `apps/assistant/dist`, and each
-build works from a sub-path (`base: "./"`), so GitHub Pages or any bucket will serve them. The
-landing page reads two optional environment variables at build time:
+build works from a sub-path (`base: "./"`), so GitHub Pages or any bucket will serve them.
+
+The [deploy workflow](.github/workflows/deploy-landing.yml) publishes both apps as one Pages site:
+the landing page at the root and the console under `/assistant/`, wired to each other through the
+build-time variables below. It runs on `workflow_dispatch`; set Settings → Pages → Build and
+deployment to "GitHub Actions" first.
 
 ```bash
 VITE_ASSISTANT_URL=https://desk.example.com pnpm build
